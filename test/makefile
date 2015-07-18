@@ -3,15 +3,15 @@
 CC=g++
 # Hey!, I am comment number 2. I want to say that CFLAGS will be the
 # options I'll pass to the compiler.
-CFLAGS=-c -Wall
-OPENGL_FLAGS=-lglfw -lGLEW -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
+CXXFLAGS=-Wall -std=c++11 -std=gnu++0x
+OPENGL_FLAGS=-lglfw3 -lGLU -lGL -lGLEW `pkg-config --static --libs x11 xrandr xi xxf86vm` 
 INCLUDE_PATH=/
 all: test
 
 test: test.o
-	$(CC) -o test test.cpp  $(OPENGL_FLAGS)
+	$(CC) $(CXXFLAGS) -o test test.cpp  $(OPENGL_FLAGS)
 triangle: triangle.o
-	$(CC) -o triangle triangle.cpp  $(OPENGL_FLAGS)
+	$(CC) $(CXXFLAGS) -o triangle triangle.cpp  $(OPENGL_FLAGS)
 
 clean:
 	rm -rf *o hello
